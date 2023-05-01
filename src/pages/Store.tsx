@@ -10,7 +10,7 @@ export function Store(){
     return (
         <>
         <SearchBar/>
-        <Box>
+        <Box sx={{textAlign: 'center'}}>
             {books?.items.map(book=>(
                 <BookItem key={book.id} book={book}></BookItem>
             ))}

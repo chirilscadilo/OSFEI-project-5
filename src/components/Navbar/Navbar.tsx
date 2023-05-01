@@ -13,19 +13,10 @@ function Navbar() {
   return (
     <Box sx={{ flexGrow: 1 , width: `100%`}}>
       <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            <Link to='/'>
-              <Button sx={{color:`white`}}>Home</Button>  
-            </Link>
-            <Link to='/store'>
+        <Toolbar sx={{display:'flex', justifyContent:'flex-end'}}>
+          <Link to='/'>
               <Button sx={{color:`white`}}>Store</Button>  
-            </Link>
-          </Typography>
-          {/* <IconButton >
-            <AddShoppingCartIcon sx={{color:`white`, position:`relative`, width: `2rem`, height:`2rem`}}/>
-            <Box sx={{color:`white`, backgroundColor:`red`, borderRadius:`50%`, width: `1.5rem`, height:`1.5rem`}}>3</Box> 
-          </IconButton> */}
+          </Link>
           <Link to='/favorite'>
               <Button sx={{color:`white`}}>Favorites</Button>  
           </Link>

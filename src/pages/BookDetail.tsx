@@ -14,7 +14,8 @@ const BookDetail=()=>{
     let {id,title,
     subtitle,
     thumbnail,
-    bookInfo} = useAppSelector(state=>state.bookDetail);
+    bookInfo,
+    authors} = useAppSelector(state=>state.bookDetail);
     return (
     <React.Fragment>
         <CssBaseline />
@@ -24,9 +25,17 @@ const BookDetail=()=>{
             <Typography>{subtitle}</Typography> 
             <img src={thumbnail} alt='Book'/>
             <Typography>{bookInfo}</Typography>
-
+            <br/>
+            {authors ?
+            <Typography variant="body2" color="text.secondary" sx={{fontWeight:'bold'}}>
+                Authors: {authors[0]}
+                {authors.slice(1,authors.length).map((autor)=>(','+ ' ' + autor))}
+            </Typography>
+            : 
+            <Typography></Typography>
+            }
             <Link to={`/favorite`}>
-                <Button size="small" onClick={()=>{dispatch(getBookFavorite({id, title, subtitle, thumbnail, bookInfo}))}}>Add to Favorite</Button>
+                <Button size="small" onClick={()=>{dispatch(getBookFavorite({id, title, subtitle, thumbnail, bookInfo, authors}))}}>Add to Favorite</Button>
             </Link>
         </Box>
         </Container>

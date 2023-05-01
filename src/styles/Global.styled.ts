@@ -8,6 +8,8 @@ export const GlobalStyles = createGlobalStyle`
 
     body{
         background-color: ${props=>props.theme.colors.main};
+        margin: ${props=>props.theme.margin};
+        font-family: ${props=>props.theme.fontFamily}, 'san-serif';
     }
 `
 

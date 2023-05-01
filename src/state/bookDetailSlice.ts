@@ -5,6 +5,7 @@ const initialState : BookDetail = {
     id: '',
     title:'',
     subtitle:'',
+    authors:[],
     thumbnail:'',
     bookInfo:'',
 }
@@ -19,6 +20,7 @@ export const bookDetailSlice = createSlice({
             state.subtitle = action.payload.subtitle;
             state.thumbnail = action.payload.thumbnail;
             state.bookInfo = action.payload.bookInfo;
+            state.authors = [...action.payload.authors];
         }
     }
 })

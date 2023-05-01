@@ -33,7 +33,8 @@ export const favoriteSlice = createSlice({
                     title:action.payload.title,
                     subtitle: action.payload.subtitle,
                     thumbnail: action.payload.thumbnail,
-                    bookInfo: action.payload.bookInfo
+                    bookInfo: action.payload.bookInfo,
+                    authors: action.payload.authors,
                 })
             }
         },
