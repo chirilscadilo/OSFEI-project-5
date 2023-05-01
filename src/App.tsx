@@ -1,25 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {Routes,Route} from 'react-router-dom';
+import { ThemeProvider } from 'styled-components';
+import { myTheme } from './models/myTheme';
+import GlobalStyles from './styles/Global.styled';
+import { Container } from '@mui/material';
+import { Home } from './pages/Home';
+import { Store } from './pages/Store';
+import BookDetail from './pages/BookDetail';
+import Favorite from './pages/Favorite';
+import Navbar from './components/Navbar/Navbar';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  <ThemeProvider theme={myTheme}>
+    <GlobalStyles/>
+    <Navbar/>
+    <Container>
+      <Routes>
+        <Route path='/' element={<Home/>}/>
+        <Route path='/store' element={<Store/>}/>
+        <Route path='/favorite' element={<Favorite/>}/>
+        <Route path='/book/:id' element={<BookDetail/>}/>
+      </Routes>
+    </Container>
+  </ThemeProvider>
   );
 }
 
