@@ -26,7 +26,7 @@ const BookDetail=()=>{
             sx={{maxWidth:138, height: 192, marginTop:2}}
             image={book?.volumeInfo.imageLinks?.thumbnail}
             />
-            <Typography>{book?.volumeInfo?.description}</Typography>
+            <Typography variant="body2" color="text.secondary">{book?.volumeInfo?.description}</Typography>
             <br/>
             <Typography variant="body2" color="text.secondary" sx={{fontWeight:'bold'}}>
                 Authors: {book?.volumeInfo?.authors?.map((author, index)=>(index===0? author :','+ ' ' + author)) || 'Unknown'} 
