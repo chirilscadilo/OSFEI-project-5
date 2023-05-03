@@ -2,40 +2,41 @@ import * as React from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import { useAppSelector } from '../hooks/reduxHooks';
 import Typography from '@mui/material/Typography/Typography';
 import Button from '@mui/material/Button';
 import {Link} from 'react-router-dom';
+import CardMedia from '@mui/material/CardMedia';
+import { useParams } from 'react-router-dom';
+import { useGetBooksByIdQuery } from '../api/getBooks-slice';
 import { useAppDispatch } from '../hooks/reduxHooks';
 import { getBookFavorite } from '../state/favoriteSlice';
 
 const BookDetail=()=>{
     const dispatch = useAppDispatch();
-    let {id,title,
-    subtitle,
-    thumbnail,
-    bookInfo,
-    authors} = useAppSelector(state=>state.bookDetail);
+    const {id} = useParams();
+    const {data:book} = useGetBooksByIdQuery(id?`${id}`:'');
     return (
     <React.Fragment>
         <CssBaseline />
         <Container fixed>
         <Box sx={{height: '100vh', width: '100%'}}>
-            <Typography variant="h4" sx={{width: '100%', marginTop: 3}}>{title}</Typography>
-            <Typography>{subtitle}</Typography> 
-            <img src={thumbnail} alt='Book'/>
-            <Typography>{bookInfo}</Typography>
+            <Typography variant="h4" sx={{width: '100%', marginTop: 3}}>{book?.volumeInfo.title}</Typography>
+            <Typography>{book?.volumeInfo?.subtitle}</Typography> 
+            <CardMedia
+            sx={{maxWidth:138, height: 192, marginTop:2}}
+            image={book?.volumeInfo.imageLinks?.thumbnail}
+            />
+            <Typography>{book?.volumeInfo?.description}</Typography>
             <br/>
-            {authors ?
             <Typography variant="body2" color="text.secondary" sx={{fontWeight:'bold'}}>
-                Authors: {authors[0]}
-                {authors.slice(1,authors.length).map((autor)=>(','+ ' ' + autor))}
+                Authors: {book?.volumeInfo?.authors?.map((author, index)=>(index===0? author :','+ ' ' + author)) || 'Unknown'} 
             </Typography>
-            : 
-            <Typography></Typography>
-            }
+            
             <Link to={`/favorite`}>
-                <Button size="small" onClick={()=>{dispatch(getBookFavorite({id, title, subtitle, thumbnail, bookInfo, authors}))}}>Add to Favorite</Button>
+                <Button size="small" 
+                onClick={()=>{dispatch(getBookFavorite(book!))}}
+                sx={{marginTop:2}}
+                >Add to Favorite</Button>
             </Link>
         </Box>
         </Container>

@@ -34,8 +34,8 @@ export function SearchBar(){
         marginLeft: 'auto',
       }}
     >
-      <TextField fullWidth label="Search Book..." id="fullWidth" inputRef={searchInput}/>
-      <Button sx={{marginTop: 2, width: 500, maxWidth: '100%',marginRight: 'auto', marginLeft: 'auto',}} type='submit'>Search</Button>
+      <TextField fullWidth label="Search Book..." id="fullWidth" inputRef={searchInput} sx={{backgroundColor:'#fff'}}/>
+      <Button sx={{marginTop: 2, width: 500, maxWidth: '100%',marginRight: 'auto', marginLeft: 'auto', fontSize: 16}} type='submit'>Search</Button>
     </Box>
     </form>
     )

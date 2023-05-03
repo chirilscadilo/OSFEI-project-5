@@ -3,7 +3,6 @@ import { ThemeProvider } from 'styled-components';
 import { myTheme } from './models/myTheme';
 import GlobalStyles from './styles/Global.styled';
 import { Container } from '@mui/material';
-import { Home } from './pages/Home';
 import { Store } from './pages/Store';
 import BookDetail from './pages/BookDetail';
 import Favorite from './pages/Favorite';

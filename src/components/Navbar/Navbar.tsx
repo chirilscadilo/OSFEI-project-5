@@ -15,10 +15,10 @@ function Navbar() {
       <AppBar position="static">
         <Toolbar sx={{display:'flex', justifyContent:'flex-end'}}>
           <Link to='/'>
-              <Button sx={{color:`white`}}>Store</Button>  
+              <Button sx={{color:`white`, '&:hover':{backgroundColor:'#095ded'}}}>Store</Button>  
           </Link>
           <Link to='/favorite'>
-              <Button sx={{color:`white`}}>Favorites</Button>  
+              <Button sx={{color:`white`, '&:hover':{backgroundColor:'#095ded'}}}>Favorites</Button>  
           </Link>
         </Toolbar>
       </AppBar>

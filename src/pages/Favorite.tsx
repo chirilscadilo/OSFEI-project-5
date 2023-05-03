@@ -9,6 +9,7 @@ import { Button } from "@mui/material";
 import { removeBookFavorite } from "../state/favoriteSlice";
 import { useAppSelector } from '../hooks/reduxHooks';
 import { useAppDispatch } from "../hooks/reduxHooks";
+import {Link} from 'react-router-dom';
 
 const Favorite=()=>{
     const dispatch = useAppDispatch();
@@ -26,30 +27,29 @@ const Favorite=()=>{
         <>
             {favoriteBooks.bookFavorite.map((book)=>(
                 <Box sx={{display:'inline-block', margin: 2}} key={book.id}>
-                    <Card sx={{ maxWidth: 345 , height: 550}}>
+                    <Card sx={{ maxWidth: 345}}>
                         <CardMedia
                         sx={{maxWidth:138, height: 192, alignItems: 'center', marginTop:2, marginLeft:'auto', marginRight:'auto'}}
-                        image={book.thumbnail}
+                        image={book?.volumeInfo?.imageLinks?.thumbnail}
                         />
                         <CardContent>
                             <Typography gutterBottom variant="h5" component="div">
-                                {book.title}
+                                {book?.volumeInfo?.title}
                             </Typography>
                             <Typography gutterBottom>
-                                {book.subtitle}
+                                {book?.volumeInfo?.subtitle}
                             </Typography>
                             <Typography variant="body2" color="text.secondary">
-                                {book.bookInfo}
+                                {book?.searchInfo?.textSnippet || book?.volumeInfo?.description.substring(0, book?.volumeInfo?.description?.indexOf('.'))}
                             </Typography>
-                            {book.authors ?
                             <Typography variant="body2" color="text.secondary" sx={{fontWeight:'bold'}}>
-                                Authors: {book.authors[0]}
-                                {book.authors.slice(1,book.authors.length).map((autor)=>(',' + ' ' + autor))}
+                                Authors: {book?.volumeInfo?.authors?.map((author, index)=>(index===0? author :','+ ' ' + author)) || 'Unknown'} 
                             </Typography>
-                            : <Typography></Typography>
-                            }
                         </CardContent>
-                        <CardActions>
+                        <CardActions sx={{display:'flex', justifyContent:'space-evenly'}}>
+                            <Link to={`/book/${book.id}`}>
+                                <Button size="small" >Learn More</Button>
+                            </Link>
                             <Button size="small" onClick={()=>{dispatch(removeBookFavorite({id:book.id}))}}>
                                 Remove from Favorite
                             </Button>

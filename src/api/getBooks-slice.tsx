@@ -11,12 +11,12 @@ export const getBooksApi = createApi({
                 url:`volumes?q=${sencence? sencence:'react'}&key=AIzaSyB7YAZWRmrF3OlvU_9CG7vx7qfS8bVZtzE`,
             })
         }),
-        getBook:builder.query<Book,string>({
+        getBooksById: builder.query<Book,string>({
             query:(id)=>({
-                url:`${id}?key=AIzaSyB7YAZWRmrF3OlvU_9CG7vx7qfS8bVZtzE`
+                url:`volumes/${id}?key=AIzaSyB7YAZWRmrF3OlvU_9CG7vx7qfS8bVZtzE`
             })
-        })
+        }),
     }),
 })
 
-export const { useGetBooksQuery } = getBooksApi;
+export const { useGetBooksQuery, useGetBooksByIdQuery } = getBooksApi;

@@ -12,13 +12,11 @@ import {
 import storage from 'redux-persist/lib/storage'; // Defaults to localStorage for web
 import { getBooksApi } from "../api/getBooks-slice";
 import searchSlice from './searchSlice';
-import bookDetailSlice from './bookDetailSlice';
 import favoriteSlice from './favoriteSlice';
 
 const reducers = combineReducers({
     [getBooksApi.reducerPath]:getBooksApi.reducer,
     search: searchSlice,
-    bookDetail: bookDetailSlice,
     favorite: favoriteSlice,
 });
 
