@@ -1,4 +1,3 @@
-import React from "react";
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
@@ -10,8 +9,10 @@ import { removeBookFavorite } from "../state/favoriteSlice";
 import { useAppSelector } from '../hooks/reduxHooks';
 import { useAppDispatch } from "../hooks/reduxHooks";
 import {Link} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Favorite=()=>{
+    const navigate = useNavigate();
     const dispatch = useAppDispatch();
     let favoriteBooks = useAppSelector(state=>state.favorite); 
 
@@ -24,10 +25,13 @@ const Favorite=()=>{
         )
     }
     return( 
-        <>
+        <>  
+            <Box>
+                <Button size='medium' onClick={() => navigate(-1)}>Go Back</Button>
+            </Box>
             {favoriteBooks.bookFavorite.map((book)=>(
                 <Box sx={{display:'inline-block', margin: 2}} key={book.id}>
-                    <Card sx={{ maxWidth: 345}}>
+                    <Card sx={{ width: 345 , height: 550}}>
                         <CardMedia
                         sx={{maxWidth:138, height: 192, alignItems: 'center', marginTop:2, marginLeft:'auto', marginRight:'auto'}}
                         image={book?.volumeInfo?.imageLinks?.thumbnail}
@@ -40,7 +44,7 @@ const Favorite=()=>{
                                 {book?.volumeInfo?.subtitle}
                             </Typography>
                             <Typography variant="body2" color="text.secondary">
-                                {book?.searchInfo?.textSnippet || book?.volumeInfo?.description.substring(0, book?.volumeInfo?.description?.indexOf('.'))}
+                                {book?.searchInfo?.textSnippet || book?.volumeInfo?.description?.substring(0, book?.volumeInfo?.description?.indexOf('.'))}
                             </Typography>
                             <Typography variant="body2" color="text.secondary" sx={{fontWeight:'bold'}}>
                                 Authors: {book?.volumeInfo?.authors?.map((author, index)=>(index===0? author :','+ ' ' + author)) || 'Unknown'} 
@@ -50,8 +54,8 @@ const Favorite=()=>{
                             <Link to={`/book/${book.id}`}>
                                 <Button size="small" >Learn More</Button>
                             </Link>
-                            <Button size="small" onClick={()=>{dispatch(removeBookFavorite({id:book.id}))}}>
-                                Remove from Favorite
+                            <Button size="small" onClick={()=>{dispatch(removeBookFavorite({id:book.id}))}} sx={{color:'#ed6d76'}}>
+                                Remove from Favorites
                             </Button>
                         </CardActions>
                     </Card>

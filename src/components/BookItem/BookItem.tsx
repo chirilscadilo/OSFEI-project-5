@@ -7,9 +7,13 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
+import BookmarkAddedRoundedIcon from '@mui/icons-material/BookmarkAddedRounded';
 import {Link} from 'react-router-dom';
 import { useAppDispatch } from "../../hooks/reduxHooks";
 import { getBookFavorite } from "../../state/favoriteSlice";
+import { useAppSelector } from "../../hooks/reduxHooks";
+import { removeBookFavorite } from "../../state/favoriteSlice";
+import { IconButton } from "@mui/material";
 
 interface BookItemProps{
     book: Book;
@@ -17,9 +21,22 @@ interface BookItemProps{
 
 const BookItem:React.FC<BookItemProps>= ({book}) =>{
     const dispatch = useAppDispatch();
+    const favoriteBooks = useAppSelector(state=>state.favorite); 
+    const existingFavoriteBook = favoriteBooks.bookFavorite.find((item)=>(item.id === book.id));
+
     return (
         <Box sx={{display:'inline-block', margin: 2}}>
             <Card sx={{ width: 345 , height: 550}}>
+                {existingFavoriteBook?
+                    <Box sx={{display:'flex'}}>
+                        <IconButton>
+                            <BookmarkAddedRoundedIcon sx={{color:'#f2a92c'}}/>
+                        </IconButton>
+                    </Box>
+                    :
+                    <></>
+                }
+                
                 <CardMedia
                 sx={{maxWidth:138, height: 192, alignItems: 'center',marginTop:2, marginLeft: 'auto', marginRight: 'auto'}}
                 image={book?.volumeInfo?.imageLinks?.thumbnail}
@@ -36,13 +53,19 @@ const BookItem:React.FC<BookItemProps>= ({book}) =>{
                         Authors: {book?.volumeInfo?.authors?.map((author, index)=>(index===0? author :','+ ' ' + author)) || 'Unknown'} 
                     </Typography>
                 </CardContent>
+
                 <CardActions sx={{display:'flex', justifyContent:'space-evenly'}}>
                     <Link to={`/book/${book.id}`}>
                         <Button size="small" >Learn More</Button>
                     </Link>
-                    <Link to={`/favorite`}>
-                        <Button size="small" onClick={()=>{dispatch(getBookFavorite(book))}}>Add to Favorite</Button>
-                    </Link>
+                    
+                    { existingFavoriteBook?
+                        <Button size="small" onClick={()=>{dispatch(removeBookFavorite({id:book.id}))}} sx={{color:'#ed6d76'}}>
+                            Remove from Favorites
+                        </Button>
+                        :
+                        <Button size="small" onClick={()=>{dispatch(getBookFavorite(book!))}}>Add to Favorite</Button>
+                    }
                 </CardActions>
             </Card>
         </Box>
