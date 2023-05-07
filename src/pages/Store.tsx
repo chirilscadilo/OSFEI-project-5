@@ -11,17 +11,20 @@ export function Store(){
     const value = useAppSelector(state=>state.search.value);
     const {data:books, isLoading, isError} = useGetBooksQuery(value? value: '');
 
-    if(isLoading){return(<Typography>Loading...</Typography>)}
+    if(isLoading){
+        return(
+        <Typography sx={{fontSize: 20, textAlign:'center'}}>Loading...</Typography>)
+    };
 
     if(isError){
         return(
         <>
-        <Typography>Something went wrong</Typography>
         <Link to='/'>
             <Button>Go Back</Button>
         </Link>
+        <Typography sx={{fontSize: 20, textAlign:'center', color: 'red'}}>Something went wrong</Typography>
         </>
-    )}
+    )};
     
     return (
         <>

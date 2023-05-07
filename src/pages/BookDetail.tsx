@@ -22,12 +22,15 @@ const BookDetail=()=>{
     const {data:book, isLoading, isError} = useGetBooksByIdQuery(id?`${id}`:'');
     const existingFavoriteBook = favoriteBooks.bookFavorite.find((item)=>(item.id === id));
 
-    if(isLoading){return(<>Loading...</>)};
+    if(isLoading){
+        return(
+        <Typography sx={{fontSize: 20, textAlign:'center'}}>Loading...</Typography>)
+    };
 
     if(isError){
         return(
         <>
-        <Typography>Something went wrong</Typography>
+        <Typography sx={{fontSize: 20, textAlign:'center', color: 'red'}}>Something went wrong</Typography>
         <Link to='/'>
             <Button>Go Back</Button>
         </Link>
