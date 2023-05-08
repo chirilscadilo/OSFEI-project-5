@@ -40,16 +40,16 @@ const Favorite=()=>{
                         />
                         <CardContent sx={{textAlign:'center'}}>
                             <Typography gutterBottom variant="h5" component="div">
-                                {book?.volumeInfo?.title}
+                                {book?.volumeInfo?.title.substring(0,26)}
                             </Typography>
                             <Typography gutterBottom>
                                 {book?.volumeInfo?.subtitle}
                             </Typography>
                             <Typography variant="body2" color="text.secondary">
-                                {book?.searchInfo?.textSnippet || book?.volumeInfo?.description?.substring(0, book?.volumeInfo?.description?.indexOf('.'))}
+                                {book?.searchInfo?.textSnippet || book?.volumeInfo?.description?.substring(0,150)}
                             </Typography>
                             <Typography variant="body2" color="text.secondary" sx={{fontWeight:'bold'}}>
-                                Authors: {book?.volumeInfo?.authors?.map((author, index)=>(index===0? author :','+ ' ' + author)) || 'Unknown'} 
+                                Authors: {book?.volumeInfo?.authors ? book?.volumeInfo?.authors[0] : 'Unknown'}  
                             </Typography>
                         </CardContent>
                         <CardActions sx={{display:'flex', justifyContent:'space-evenly'}}>
