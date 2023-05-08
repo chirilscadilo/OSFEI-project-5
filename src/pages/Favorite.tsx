@@ -4,6 +4,8 @@ import Typography from '@mui/material/Typography';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
+import IconButton from '@mui/material/IconButton/IconButton';
+import StarIcon from '@mui/icons-material/Star';
 import { Button } from "@mui/material";
 import { removeBookFavorite } from "../state/favoriteSlice";
 import { useAppSelector } from '../hooks/reduxHooks';
@@ -54,9 +56,9 @@ const Favorite=()=>{
                             <Link to={`/book/${book.id}`}>
                                 <Button size="small" >Learn More</Button>
                             </Link>
-                            <Button size="small" onClick={()=>{dispatch(removeBookFavorite({id:book.id}))}} sx={{color:'#ed6d76'}}>
-                                Remove from Favorites
-                            </Button>
+                            <IconButton size="small" onClick={()=>{dispatch(removeBookFavorite({id:book.id}))}} sx={{color:'#ed6d76'}}>
+                                <StarIcon sx={{color:'#f2a92c'}}/>
+                            </IconButton>
                         </CardActions>
                     </Card>
                 </Box>

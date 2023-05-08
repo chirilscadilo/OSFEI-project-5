@@ -8,7 +8,7 @@ export const getBooksApi = createApi({
     endpoints:(builder)=>({
         getBooks: builder.query<ApiResponce,string>({
             query:(sencence)=>({
-                url:`volumes?q=${sencence? sencence:'react'}&key=AIzaSyB7YAZWRmrF3OlvU_9CG7vx7qfS8bVZtzE`,
+                url:`volumes?q=${sencence? sencence:'react'}&maxResults=40&key=AIzaSyB7YAZWRmrF3OlvU_9CG7vx7qfS8bVZtzE`,
             })
         }),
         getBooksById: builder.query<Book,string>({

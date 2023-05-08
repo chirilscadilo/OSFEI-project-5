@@ -1,42 +1,28 @@
-import React, {useRef} from 'react';
+import {useState} from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
 import { changeValue } from '../../state/searchSlice';
 import { useAppDispatch } from '../../hooks/reduxHooks';
-
+import useDebounce from '../../hooks/useDebounce';
 
 export function SearchBar(){
-    
     const dispatch = useAppDispatch();
-    const searchInput = useRef<HTMLInputElement>(null);
+    const [searchInput, setSearchInput] = useState('');
+    const debounceSearchInput = useDebounce(searchInput, 500);
 
-    const handleSearch=(event: React.FormEvent)=>{
-        event.preventDefault();
-
-        const enteredText = searchInput.current?.value;
-
-        if(enteredText?.trim().length === 0){
-            return;
-        }
-
-        enteredText && dispatch(changeValue(enteredText));
-    }
+    searchInput && dispatch(changeValue(debounceSearchInput))
     
     return (
-    <form onSubmit={handleSearch}>
-    <Box
-      sx={{
-        width: 500,
-        maxWidth: '100%',
-        marginTop: 2,
-        marginRight: 'auto',
-        marginLeft: 'auto',
-      }}
-    >
-      <TextField fullWidth label="Search Book..." id="fullWidth" inputRef={searchInput} sx={{backgroundColor:'#fff'}}/>
-      <Button sx={{marginTop: 2, width: 500, maxWidth: '100%',marginRight: 'auto', marginLeft: 'auto', fontSize: 16}} type='submit'>Search</Button>
-    </Box>
-    </form>
+      <Box
+        sx={{
+          width: 500,
+          maxWidth: '100%',
+          marginTop: 2,
+          marginRight: 'auto',
+          marginLeft: 'auto',
+        }}
+      >
+        <TextField fullWidth label="Search Book..." id="fullWidth" value={searchInput} sx={{backgroundColor:'#fff'}} onChange={(e)=>setSearchInput(e.target.value)}/>
+      </Box>
     )
 }

@@ -7,7 +7,8 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
-import BookmarkAddedRoundedIcon from '@mui/icons-material/BookmarkAddedRounded';
+import StarBorderIcon from '@mui/icons-material/StarBorder';
+import StarIcon from '@mui/icons-material/Star';
 import {Link} from 'react-router-dom';
 import { useAppDispatch } from "../../hooks/reduxHooks";
 import { getBookFavorite } from "../../state/favoriteSlice";
@@ -27,16 +28,6 @@ const BookItem:React.FC<BookItemProps>= ({book}) =>{
     return (
         <Box sx={{display:'inline-block', margin: 2}}>
             <Card sx={{ width: 345 , height: 550}}>
-                {existingFavoriteBook?
-                    <Box sx={{display:'flex'}}>
-                        <IconButton>
-                            <BookmarkAddedRoundedIcon sx={{color:'#f2a92c'}}/>
-                        </IconButton>
-                    </Box>
-                    :
-                    <></>
-                }
-                
                 <CardMedia
                 sx={{maxWidth:138, height: 192, alignItems: 'center',marginTop:2, marginLeft: 'auto', marginRight: 'auto'}}
                 image={book?.volumeInfo?.imageLinks?.thumbnail}
@@ -46,11 +37,11 @@ const BookItem:React.FC<BookItemProps>= ({book}) =>{
                         {book.volumeInfo.title}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                        {book?.searchInfo?.textSnippet}
+                        {book?.searchInfo?.textSnippet.substring(0,150)}
                     </Typography>
                     <br/>
                     <Typography variant="body2" color="text.secondary" sx={{fontWeight:'bold'}}>
-                        Authors: {book?.volumeInfo?.authors?.map((author, index)=>(index===0? author :','+ ' ' + author)) || 'Unknown'} 
+                        Authors: {book?.volumeInfo?.authors ? book?.volumeInfo?.authors[0] : 'Unknown'} 
                     </Typography>
                 </CardContent>
 
@@ -60,11 +51,13 @@ const BookItem:React.FC<BookItemProps>= ({book}) =>{
                     </Link>
                     
                     { existingFavoriteBook?
-                        <Button size="small" onClick={()=>{dispatch(removeBookFavorite({id:book.id}))}} sx={{color:'#ed6d76'}}>
-                            Remove from Favorites
-                        </Button>
+                        <IconButton size="small" onClick={()=>{dispatch(removeBookFavorite({id:book.id}))}}>
+                            <StarIcon sx={{color:'#f2a92c'}}/>
+                        </IconButton>
                         :
-                        <Button size="small" onClick={()=>{dispatch(getBookFavorite(book!))}}>Add to Favorite</Button>
+                        <IconButton size="small" onClick={()=>{dispatch(getBookFavorite(book!))}} sx={{color:'#ed6d76'}}>
+                            <StarBorderIcon sx={{color:'#f2a92c'}}/>
+                        </IconButton>
                     }
                 </CardActions>
             </Card>
