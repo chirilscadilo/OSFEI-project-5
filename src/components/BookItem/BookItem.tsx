@@ -31,6 +31,7 @@ const BookItem:React.FC<BookItemProps>= ({book}) =>{
                 <CardMedia
                 sx={{maxWidth:138, height: 192, alignItems: 'center',marginTop:2, marginLeft: 'auto', marginRight: 'auto'}}
                 image={book?.volumeInfo?.imageLinks?.thumbnail}
+                component='img'
                 />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div">

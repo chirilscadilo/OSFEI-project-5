@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { changeValue } from '../../state/searchSlice';
@@ -10,7 +10,11 @@ export function SearchBar(){
     const [searchInput, setSearchInput] = useState('');
     const debounceSearchInput = useDebounce(searchInput, 500);
 
-    searchInput && dispatch(changeValue(debounceSearchInput))
+    //searchInput && dispatch(changeValue(debounceSearchInput))
+    useEffect(()=>{
+      searchInput && dispatch(changeValue(debounceSearchInput))
+
+    }, [debounceSearchInput])
     
     return (
       <Box

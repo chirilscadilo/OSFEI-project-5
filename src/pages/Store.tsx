@@ -10,7 +10,6 @@ import Typography from "@mui/material/Typography/Typography";
 
 export function Store(){
     const value = useAppSelector(state=>state.search.value);
-    //const [serchValue, setSearchValue] = useState('');
     const {data:books, isLoading, isError} = useGetBooksQuery(value? value: '');
 
     if(isLoading){
@@ -27,14 +26,9 @@ export function Store(){
         <Typography sx={{fontSize: 20, textAlign:'center', color: 'red'}}>Something went wrong</Typography>
         </>
     )};
-
-    // const handleSearchValue = (text:string) =>{
-    //     setSearchValue(text);
-    // }
     
     return (
         <>
-        {/* <SearchBar handleSearchValue={handleSearchValue}/> */}
         <SearchBar/>
         <Box sx={{textAlign: 'center'}}>
             {books?.items.map(book=>(

@@ -37,6 +37,7 @@ const Favorite=()=>{
                         <CardMedia
                         sx={{maxWidth:138, height: 192, alignItems: 'center', marginTop:2, marginLeft:'auto', marginRight:'auto'}}
                         image={book?.volumeInfo?.imageLinks?.thumbnail}
+                        component='img'
                         />
                         <CardContent sx={{textAlign:'center'}}>
                             <Typography gutterBottom variant="h5" component="div">

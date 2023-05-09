@@ -50,6 +50,7 @@ const BookDetail=()=>{
             <CardMedia
             sx={{maxWidth:138, height: 192, marginTop:2}}
             image={book?.volumeInfo?.imageLinks?.thumbnail}
+            component='img'
             />
             <Typography variant="body2" color="text.secondary">{book?.volumeInfo?.description}</Typography>
             <br/>
