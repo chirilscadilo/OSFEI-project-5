@@ -43,7 +43,7 @@ const BookDetail=()=>{
         <Container fixed>
         <Box sx={{height: '100vh', width: '100%'}}>
 
-            <Button size='medium' onClick={() => navigate(-1)}>Go Back</Button>
+            <Button size='medium' onClick={() => navigate(-1)} sx={{marginTop:2}}>Go Back</Button>
 
             <Typography variant="h4" sx={{width: '100%', marginTop: 3}}>
                 <div dangerouslySetInnerHTML={{

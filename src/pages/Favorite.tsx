@@ -29,10 +29,13 @@ const Favorite=()=>{
     return( 
         <>  
             <Box>
-                <Button size='medium' onClick={() => navigate(-1)}>Go Back</Button>
+                <Button size='medium' onClick={() => navigate(-1)} sx={{marginTop:2}}>Go Back</Button>
+                <Typography component='h1' variant='h4' sx={{textAlign:'center'}}>Favorite List:</Typography>
             </Box>
+            
             {favoriteBooks.bookFavorite.map((book)=>(
                 <Box sx={{display:'inline-block', margin: 2}} key={book.id}>
+                    
                     <Card sx={{ width: 345 , height: 550}}>
                         <CardMedia
                         sx={{maxWidth:138, height: 192, alignItems: 'center', marginTop:2, marginLeft:'auto', marginRight:'auto'}}
