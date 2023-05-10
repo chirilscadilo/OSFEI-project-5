@@ -35,7 +35,7 @@ const BookItem:React.FC<BookItemProps>= ({book}) =>{
                 />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
-                        {book.volumeInfo.title.substring(0,26)}
+                        {book?.volumeInfo?.title.substring(0,26).concat('...')}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
                         {book?.searchInfo?.textSnippet.substring(0,150)}

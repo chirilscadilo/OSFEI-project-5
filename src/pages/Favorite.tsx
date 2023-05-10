@@ -41,7 +41,7 @@ const Favorite=()=>{
                         />
                         <CardContent sx={{textAlign:'center'}}>
                             <Typography gutterBottom variant="h5" component="div">
-                                {book?.volumeInfo?.title.substring(0,26)}
+                                {book?.volumeInfo?.title.substring(0,26).concat('...')}
                             </Typography>
                             <Typography gutterBottom>
                                 {book?.volumeInfo?.subtitle}

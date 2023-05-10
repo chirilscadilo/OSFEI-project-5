@@ -1,7 +1,6 @@
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import {Link} from 'react-router-dom';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
@@ -15,9 +14,9 @@ function Navbar() {
         <Toolbar sx={{display:'flex', justifyContent:'space-between'}}>
           <Box>
             <Link to='/'>
-            <IconButton sx={{'&:hover':{backgroundColor:'#095ded'}}}>
-              <MenuBookIcon fontSize='large' sx={{color:'white'}}/>
-            </IconButton>
+              <IconButton sx={{'&:hover':{backgroundColor:'#095ded'}}}>
+                <MenuBookIcon fontSize='large' sx={{color:'white'}}/>
+              </IconButton>
             </Link>
           </Box>
 

@@ -10,11 +10,10 @@ export function SearchBar(){
     const [searchInput, setSearchInput] = useState('');
     const debounceSearchInput = useDebounce(searchInput, 500);
 
-    //searchInput && dispatch(changeValue(debounceSearchInput))
     useEffect(()=>{
       searchInput && dispatch(changeValue(debounceSearchInput))
 
-    }, [debounceSearchInput])
+    }, [debounceSearchInput, searchInput, dispatch])
     
     return (
       <Box
