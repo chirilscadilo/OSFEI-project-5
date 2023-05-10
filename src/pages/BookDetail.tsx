@@ -45,14 +45,26 @@ const BookDetail=()=>{
 
             <Button size='medium' onClick={() => navigate(-1)}>Go Back</Button>
 
-            <Typography variant="h4" sx={{width: '100%', marginTop: 3}}>{book?.volumeInfo.title}</Typography>
-            <Typography>{book?.volumeInfo?.subtitle}</Typography> 
+            <Typography variant="h4" sx={{width: '100%', marginTop: 3}}>
+                <div dangerouslySetInnerHTML={{
+                    __html: book!.volumeInfo?.title
+                }}/>
+            </Typography>
+            <Typography>
+                <div dangerouslySetInnerHTML={{
+                    __html: book!.volumeInfo?.subtitle
+                }}/>
+            </Typography> 
             <CardMedia
             sx={{maxWidth:138, height: 192, marginTop:2}}
             image={book?.volumeInfo?.imageLinks?.thumbnail}
             component='img'
             />
-            <Typography variant="body2" color="text.secondary">{book?.volumeInfo?.description}</Typography>
+            <Typography variant="body2" color="text.secondary">
+                <div dangerouslySetInnerHTML={{
+                    __html: book!.volumeInfo?.description
+                }}/>
+            </Typography>
             <br/>
             <Typography variant="body2" color="text.secondary" sx={{fontWeight:'bold'}}>
                 Authors: {book?.volumeInfo?.authors?.map((author, index)=>(index===0? author :','+ ' ' + author)) || 'Unknown'} 

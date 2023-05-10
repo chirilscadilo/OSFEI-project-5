@@ -41,13 +41,14 @@ const Favorite=()=>{
                         />
                         <CardContent sx={{textAlign:'center'}}>
                             <Typography gutterBottom variant="h5" component="div">
-                                {book?.volumeInfo?.title.substring(0,26).concat('...')}
-                            </Typography>
-                            <Typography gutterBottom>
-                                {book?.volumeInfo?.subtitle}
+                                <div dangerouslySetInnerHTML={{
+                                __html:book?.volumeInfo?.title.length > 26 ? book?.volumeInfo?.title.substring(0,26).concat('...'): book?.volumeInfo?.title
+                                }}/>
                             </Typography>
                             <Typography variant="body2" color="text.secondary">
-                                {book?.searchInfo?.textSnippet || book?.volumeInfo?.description?.substring(0,150)}
+                                <div dangerouslySetInnerHTML={{
+                                __html:book?.searchInfo?.textSnippet || book?.volumeInfo?.description?.substring(0,150)
+                                }}/>
                             </Typography>
                             <Typography variant="body2" color="text.secondary" sx={{fontWeight:'bold'}}>
                                 Authors: {book?.volumeInfo?.authors ? book?.volumeInfo?.authors[0] : 'Unknown'}  

@@ -11,7 +11,7 @@ export const getBooksApi = createApi({
                 url:`volumes?q=${sencence? sencence:'react'}&maxResults=40&key=AIzaSyB7YAZWRmrF3OlvU_9CG7vx7qfS8bVZtzE`,
             })
         }),
-        getBooksById: builder.query<Book,string>({
+        getBooksById: builder.query<Book,string|undefined|TrustedHTML>({
             query:(id)=>({
                 url:`volumes/${id}?key=AIzaSyB7YAZWRmrF3OlvU_9CG7vx7qfS8bVZtzE`
             })

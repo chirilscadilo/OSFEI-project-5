@@ -23,6 +23,8 @@ interface BookItemProps{
 const BookItem:React.FC<BookItemProps>= ({book}) =>{
     const dispatch = useAppDispatch();
     const favoriteBooks = useAppSelector(state=>state.favorite); 
+
+    
     const existingFavoriteBook = favoriteBooks.bookFavorite.find((item)=>(item.id === book.id));
 
     return (
@@ -35,10 +37,14 @@ const BookItem:React.FC<BookItemProps>= ({book}) =>{
                 />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
-                        {book?.volumeInfo?.title.substring(0,26).concat('...')}
+                        <div dangerouslySetInnerHTML={{
+                            __html:book?.volumeInfo?.title.length > 26 ? book?.volumeInfo?.title.substring(0,26).concat('...'): book?.volumeInfo?.title
+                        }}/>
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                        {book?.searchInfo?.textSnippet.substring(0,150)}
+                        <div dangerouslySetInnerHTML={{
+                            __html:book?.searchInfo?.textSnippet.substring(0,150)
+                        }}/>
                     </Typography>
                     <br/>
                     <Typography variant="body2" color="text.secondary" sx={{fontWeight:'bold'}}>
