@@ -60,7 +60,7 @@ const BookDetail=()=>{
             image={book?.volumeInfo?.imageLinks?.thumbnail}
             component='img'
             />
-            <Typography variant="body2" color="text.secondary">
+            <Typography variant="body2" color="text.secondary" sx={{marginTop:2}}>
                 <div dangerouslySetInnerHTML={{
                     __html: book!.volumeInfo?.description
                 }}/>
