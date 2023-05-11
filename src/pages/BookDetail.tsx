@@ -45,12 +45,12 @@ const BookDetail=()=>{
 
             <Button size='medium' onClick={() => navigate(-1)} sx={{marginTop:2}}>Go Back</Button>
 
-            <Typography variant="h4" sx={{width: '100%', marginTop: 3}}>
+            <Typography variant="h4" sx={{width: '100%', marginTop: 3}} component="div">
                 <div dangerouslySetInnerHTML={{
                     __html: book!.volumeInfo?.title
                 }}/>
             </Typography>
-            <Typography>
+            <Typography component="div">
                 <div dangerouslySetInnerHTML={{
                     __html: book!.volumeInfo?.subtitle
                 }}/>
@@ -60,7 +60,7 @@ const BookDetail=()=>{
             image={book?.volumeInfo?.imageLinks?.thumbnail}
             component='img'
             />
-            <Typography variant="body2" color="text.secondary" sx={{marginTop:2}}>
+            <Typography variant="body2" color="text.secondary" sx={{marginTop:2}} component="div">
                 <div dangerouslySetInnerHTML={{
                     __html: book!.volumeInfo?.description
                 }}/>

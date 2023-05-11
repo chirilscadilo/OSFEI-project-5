@@ -41,7 +41,7 @@ const BookItem:React.FC<BookItemProps>= ({book}) =>{
                             __html:book?.volumeInfo?.title.length > 26 ? book?.volumeInfo?.title.substring(0,26).concat('...'): book?.volumeInfo?.title
                         }}/>
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
+                    <Typography variant="body2" color="text.secondary" component="div">
                         <div dangerouslySetInnerHTML={{
                             __html:book?.searchInfo?.textSnippet.substring(0,150)
                         }}/>
