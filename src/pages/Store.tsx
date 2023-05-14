@@ -9,7 +9,7 @@ import Button from '@mui/material/Button';
 import Typography from "@mui/material/Typography/Typography";
 
 export function Store(){
-    const value = useAppSelector(state=>state.search.value);
+    const value = useAppSelector(state=>state?.search?.value);
     const {data:books, isLoading, isError} = useGetBooksQuery(value? value: '');
 
     if(isLoading){
@@ -31,9 +31,13 @@ export function Store(){
         <>
         <SearchBar/>
         <Box sx={{textAlign: 'center'}}>
-            {books?.items.map(book=>(
+            {books?.items ?
+            books?.items?.map(book=>(
                 <BookItem key={book.id} book={book}></BookItem>
-            ))}
+            ))
+            :
+            <Typography variant="h5" sx={{marginTop:2}}>No data. Please enter a new search.</Typography>
+            }
         </Box>
         </>
     )
